@@ -1976,7 +1976,10 @@ def do_it() -> int:
 
     if args.verbose:
         kernelargs.append("debug")
-    else:
+
+    # loglevel and quiet arguments can be set when running with --exec, so
+    # don't set it twice
+    if not args.script_sh and not args.script_exec:
         kernelargs.append("quiet")
         kernelargs.append("loglevel=1")
 
